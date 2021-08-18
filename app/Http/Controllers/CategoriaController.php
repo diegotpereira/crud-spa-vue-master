@@ -15,6 +15,9 @@ class CategoriaController extends Controller
     public function index()
     {
         //
+        $categorias = Categoria::all(['id', 'titulo', 'descricao']);
+        
+        return response()->json($categorias);
     }
 
     /**
@@ -36,6 +39,12 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        $categoria = Categoria::create($request->post());
+
+        return response()->json([
+            'message'=> 'Categoria criada com sucesso!',
+            'categoria'=> $categoria
+        ]);
     }
 
     /**
@@ -47,6 +56,7 @@ class CategoriaController extends Controller
     public function show(Categoria $categoria)
     {
         //
+        return response()->json($categoria);
     }
 
     /**
@@ -70,6 +80,12 @@ class CategoriaController extends Controller
     public function update(Request $request, Categoria $categoria)
     {
         //
+        $categoria->fill($request->post())->save();
+
+        return response()->json([
+            'message'=> 'Categoria atualizada com sucesso!',
+            'categoria'=> $categoria
+        ]);
     }
 
     /**
@@ -81,5 +97,10 @@ class CategoriaController extends Controller
     public function destroy(Categoria $categoria)
     {
         //
+        $categoria->delete();
+
+        return response()->json([
+            'message'=> 'Categoria deletada com sucesso!'
+        ]);
     }
 }
