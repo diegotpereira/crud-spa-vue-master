@@ -1976,11 +1976,11 @@ var routes = [{
   component: CategoriaLista
 }, {
   name: 'categoriaEditar',
-  path: '/categoria/:id/editar',
+  path: '/categoria/editar/:id',
   component: CategoriaEditar
 }, {
   name: 'categoriaNova',
-  path: 'categoria/add',
+  path: '/categoria/nova',
   component: CategoriaNova
 }];
 

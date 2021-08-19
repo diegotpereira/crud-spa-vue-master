@@ -35,13 +35,10 @@
 </template>
 <script>
 export default {
-    name: add-categoria,
+    name: "nova-categoria",
     data() {
         return {
-            categoria: {
-                titulo: "",
-                descricao: ""
-            }
+            categoria: {}
         }
     },
 

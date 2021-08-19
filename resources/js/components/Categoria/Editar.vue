@@ -40,14 +40,10 @@
 </template>
 <script>
 export default {
-  name: atualizar-categoria,
+  name: "atualizar-categoria",
   data() {
     return {
-      categoria: {
-        titulo: "",
-        descricao: "",
-        _method: "patch",
-      }
+      categoria: {}
     }
   },
 
@@ -57,28 +53,28 @@ export default {
 
   methods: {
     async mostrarCategoria() {
-      await this.axios
-        .get(`/api/categoria/${this.$route.params.id}`)
-        .then(response => {
-          const { titulo, descricao } = response.data;
-          this.categoria.titulo = titulo;
-          this.categoria.descricao = descricao;
+      await this.axios.get(`http://localhost:8000/api/categoria/${this.$route.params.id}`, this.categoria).then(response => {  
+          const  { titulo, descricao } = response.data
+          this.categoria.titulo = titulo
+          this.categoria.descricao = descricao
         })
         .catch(error => {
-          console.log(error);
+          console.log(error)
         })
     },
     async atualizar() {
       await this.axios
         .post(`/api/categoria/${this.$route.params.id}`, this.categoria)
         .then(response => {
-          this.$router.push({ name: "categoriaLista" });
+          this.$router.push({ name: "categoriaLista" })
         })
         .catch(error => {
           console.log(error);
         })
     }
+
   }
+  
 }
 </script>
 <style lang="">

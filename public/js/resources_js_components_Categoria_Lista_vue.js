@@ -81,7 +81,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       categorias: []
     };
   },
-  mounted: {
+  mounted: function mounted() {
+    this.getCategorias();
+  },
+  methods: {
     getCategorias: function getCategorias() {
       var _this = this;
 

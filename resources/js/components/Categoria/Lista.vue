@@ -43,6 +43,7 @@
     </div>
 </template>
 <script>
+
 export default {
     name: "categorias",
     data() {
@@ -51,7 +52,11 @@ export default {
         }
     },
 
-    mounted: {
+    mounted:function    () {
+        this.getCategorias()
+    },
+
+    methods: {
         async getCategorias() {
             await this.axios.get('/api/categoria').then(response => {
                 this.categorias = response.data
@@ -63,7 +68,7 @@ export default {
 
         excluirCategoria(id) {
             if (confirm("Tem certeza que deseja excluir esta categoria?")) {
-                this.axios.delete(`/api/categoria/${id}`).then(response=> {
+                this.axios.delete(`/api/categoria/${id}`).then(response => {
                     this.getCategorias()
                 }).catch(error=> {
                     console.log(error)

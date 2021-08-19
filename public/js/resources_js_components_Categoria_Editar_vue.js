@@ -71,57 +71,43 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: atualizar - categoria,
+  name: "atualizar-categoria",
   data: function data() {
     return {
-      categoria: {
-        titulo: "",
-        descricao: "",
-        _method: "patch"
-      }
+      categoria: {}
     };
   },
-  mounted: function mounted() {
-    this.mostrarCategoria();
+  created: function created() {
+    var _this = this;
+
+    this.axios.get("http://127.0.0.1:8000/api/categoria/".concat(this.$route.params.id)).then(function (response) {
+      _this.categoria = response.data;
+      console.log(response.data);
+    });
   },
+  // mounted() {
+  //   this.mostrarCategoria();
+  // },
   methods: {
-    mostrarCategoria: function mostrarCategoria() {
-      var _this = this;
+    // async mostrarCategoria() {
+    //   await this.axios.get(`http://localhost:8000/api/categoria/${this.$route.params.id}`, this.categoria).then(response => {  
+    //       const  { titulo, descricao } = response.data
+    //       this.categoria.titulo = titulo
+    //       this.categoria.descricao = descricao
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // },
+    atualizar: function atualizar() {
+      var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _this.axios.get("/api/categoria/".concat(_this.$route.params.id)).then(function (response) {
-                  var _response$data = response.data,
-                      titulo = _response$data.titulo,
-                      descricao = _response$data.descricao;
-                  _this.categoria.titulo = titulo;
-                  _this.categoria.descricao = descricao;
-                })["catch"](function (error) {
-                  console.log(error);
-                });
-
-              case 2:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }))();
-    },
-    atualizar: function atualizar() {
-      var _this2 = this;
-
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return _this2.axios.post("/api/categoria/".concat(_this2.$route.params.id), _this2.categoria).then(function (response) {
+                _this2.axios.post("/api/categoria/update/".concat(_this2.$route.params.id), _this2.categoria).then(function (response) {
                   _this2.$router.push({
                     name: "categoriaLista"
                   });
@@ -129,12 +115,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   console.log(error);
                 });
 
-              case 2:
+              case 1:
               case "end":
-                return _context2.stop();
+                return _context.stop();
             }
           }
-        }, _callee2);
+        }, _callee);
       }))();
     }
   }

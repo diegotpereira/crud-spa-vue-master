@@ -66,13 +66,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: add - categoria,
+  name: "nova-categoria",
   data: function data() {
     return {
-      categoria: {
-        titulo: "",
-        descricao: ""
-      }
+      categoria: {}
     };
   },
   methods: {
